@@ -27,12 +27,15 @@ Cuando un cliente llega a la automotora con un auto para vender o entregar en pe
 
 ---
 
-## 🚀 Cómo Subir a Vercel en 10 Segundos (100% Gratis)
+## 🚀 Despliegue en 1 Clic en Vercel (100% Gratis)
 
-1. Entrá a [Vercel.com](https://vercel.com) o [Netlify Drop](https://app.netlify.com/drop).
-2. Arrastrá la carpeta `carvlak-tasacion-vivo`.
-3. Clic en **Deploy**.
-4. Te dará un link permanente como `https://carvlak-tasacion-vivo.vercel.app`.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmaximilianoirujo-sudo%2FCARVLAK-TASACION-VIVO)
+
+1. Hacé clic en el botón de arriba o entrá directamente a:  
+   👉 [https://vercel.com/new/clone?repository-url=https://github.com/maximilianoirujo-sudo/CARVLAK-TASACION-VIVO](https://vercel.com/new/clone?repository-url=https://github.com/maximilianoirujo-sudo/CARVLAK-TASACION-VIVO)
+2. Hacé clic en **Deploy**.
+3. ¡Listo! Vercel te dará una URL permanente como:  
+   👉 `https://carvlak-tasacion-vivo.vercel.app`
 
 ---
 
