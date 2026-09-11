@@ -1,0 +1,24 @@
+{
+  "name": "CARVLAK | Tasación en Vivo",
+  "short_name": "CARVLAK Vivo",
+  "description": "App de peritaje físico y tasación en vivo de vehículos para CARVLAK Automotores",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#2D3E46",
+  "theme_color": "#2D3E46",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://dcdn-us.mitiendanube.com/stores/006/928/264/themes/common/logo-1181937392-1762700015-9161ba30a7197fa8fc6cefa80fffb51e1762700015.ico?0",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://dcdn-us.mitiendanube.com/stores/006/928/264/themes/common/logo-1181937392-1762700015-9161ba30a7197fa8fc6cefa80fffb51e1762700015.ico?0",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

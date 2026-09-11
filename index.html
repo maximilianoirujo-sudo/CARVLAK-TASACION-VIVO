@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  
+  <!-- Soporte Oficial Apple iOS / iPhone (PWA) -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CARVLAK Vivo">
+  <meta name="theme-color" content="#2D3E46">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="apple-touch-icon" href="https://dcdn-us.mitiendanube.com/stores/006/928/264/themes/common/logo-1181937392-1762700015-9161ba30a7197fa8fc6cefa80fffb51e1762700015.ico?0">
+  <link rel="icon" type="image/x-icon" href="https://dcdn-us.mitiendanube.com/stores/006/928/264/themes/common/logo-1181937392-1762700015-9161ba30a7197fa8fc6cefa80fffb51e1762700015.ico?0">
+  <link rel="manifest" href="manifest.json">
+
+  <title>CARVLAK | Tasación & Peritaje en Vivo</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Piazzolla & Instrument Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Piazzolla:opsz,wght@8..30,600;8..30,700;8..30,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Instrument Sans"', '"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['"Piazzolla"', 'Georgia', 'serif'],
+          },
+          colors: {
+            brand: {
+              petrol: '#2D3E46',
+              petrolDark: '#1E2B31',
+              petrolLight: '#3E545F',
+              petrolSubtle: '#F1F5F7',
+              red: '#C0392B',
+              redHover: '#A93226',
+              gold: '#D4AF37',
+              bgLight: '#F8FAFC'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#F8FAFC] text-slate-800 min-h-screen flex flex-col antialiased selection:bg-[#2D3E46] selection:text-white pb-24 md:pb-12">
+
+  <!-- ============================================================================== -->
+  <!-- BARRA SUPERIOR INSTITUCIONAL CARVLAK -->
+  <!-- ============================================================================== -->
+  <div class="bg-[#2D3E46] text-white px-3 sm:px-4 py-2 text-xs font-medium border-b border-[#1E2B31] no-print">
+    <div class="max-w-6xl mx-auto flex justify-between items-center gap-2">
+      <div class="flex items-center space-x-2">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-bold text-white tracking-wide">CARVLAK AUTOMOTORES</span>
+        <span class="text-slate-400 hidden sm:inline">•</span>
+        <span class="text-slate-200 hidden sm:inline font-semibold">Peritaje de Patio & Tasación en Vivo</span>
+      </div>
+      
+      <div class="flex items-center space-x-2 text-slate-300 text-[11px]">
+        <!-- Destinatario Jonathan -->
+        <div class="hidden sm:flex items-center gap-1.5 bg-[#1E2B31] px-2.5 py-1 rounded-md border border-slate-700">
+          <span class="text-emerald-400 font-bold">📲 Jefe:</span>
+          <span id="bossLabelDisplay" class="text-white font-semibold">Jonathan Kaitazoff (+598 99 267 964)</span>
+        </div>
+
+        <!-- Botón Historial -->
+        <button onclick="toggleHistoryDrawer()" class="bg-[#3E545F] hover:bg-[#4E6876] text-white px-2.5 py-1 rounded-md font-bold flex items-center gap-1 transition-colors shadow-sm">
+          <span>📁</span>
+          <span>Historial (<span id="historyCountBadge">0</span>)</span>
+        </button>
+
+        <!-- Botón Ajustes -->
+        <button onclick="openSettingsModal()" class="p-1 hover:bg-[#3E545F] rounded text-slate-300 hover:text-white" title="Configurar destinatario">
+          ⚙️
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================================== -->
+  <!-- HEADER & SELECTOR DE OPERADOR / TASADOR -->
+  <!-- ============================================================================== -->
+  <header class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-20 no-print">
+    <div class="max-w-6xl mx-auto px-3 sm:px-6 py-2.5 flex items-center justify-between gap-3">
+      
+      <!-- Brand & Título -->
+      <div class="flex items-center space-x-2.5">
+        <div class="w-9 h-9 rounded-xl bg-[#2D3E46] flex items-center justify-center text-white font-serif font-black text-lg shadow border border-[#1E2B31]">
+          C
+        </div>
+        <div>
+          <div class="flex items-center space-x-1.5">
+            <h1 class="text-base sm:text-xl font-bold font-serif text-[#1E2B31] tracking-tight">Tasación en Vivo</h1>
+            <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#C0392B] text-white">Patio</span>
+          </div>
+          <p class="text-[10px] sm:text-xs text-slate-500">Inspección rápida sin demoras para Jonathan</p>
+        </div>
+      </div>
+
+      <!-- Selector de Inspector / Tasador -->
+      <div class="flex items-center space-x-2">
+        <div class="flex flex-col items-end">
+          <span class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Inspector:</span>
+          <select id="operatorSelect" onchange="changeOperator(this.value)" class="bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-semibold rounded-lg px-2 py-1 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#2D3E46] cursor-pointer">
+            <option value="Maximiliano Irujo" selected>Maximiliano Irujo</option>
+            <option value="Marcos Martínez">Marcos Martínez</option>
+            <option value="Bruno Di Giovanni">Bruno Di Giovanni</option>
+            <option value="Jonathan Kaitazoff">Jonathan Kaitazoff</option>
+          </select>
+        </div>
+
+        <button onclick="resetInspectionForm()" class="bg-slate-100 hover:bg-rose-50 text-slate-600 hover:text-rose-700 p-1.5 rounded-lg border border-slate-300 text-xs font-bold flex items-center gap-1 transition-colors" title="Nueva Tasación">
+          <span class="text-sm">🔄</span>
+          <span class="hidden sm:inline">Nuevo</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Navegación de Pasos / Pestañas Rápidas -->
+    <div class="max-w-6xl mx-auto px-2 sm:px-6 overflow-x-auto flex space-x-1 py-1.5 text-xs font-semibold border-t border-slate-100">
+      <button onclick="switchTab('tab-vehiculo')" id="nav-tab-vehiculo" class="tab-btn active-tab px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap">
+        <span>🚗</span> <span>1. Auto & Datos</span>
+      </button>
+      <button onclick="switchTab('tab-carroceria')" id="nav-tab-carroceria" class="tab-btn px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-600 hover:bg-slate-100">
+        <span>🔨</span> <span>2. Chapa & Daños</span>
+        <span id="repaintedCountBadge" class="hidden ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-amber-500 text-white font-bold">0</span>
+      </button>
+      <button onclick="switchTab('tab-mecanica')" id="nav-tab-mecanica" class="tab-btn px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-600 hover:bg-slate-100">
+        <span>⚙️</span> <span>3. Mecánica & Cubiertas</span>
+      </button>
+      <button onclick="switchTab('tab-fotos')" id="nav-tab-fotos" class="tab-btn px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-600 hover:bg-slate-100">
+        <span>📸</span> <span>4. Fotos en Vivo</span>
+        <span id="photoCountBadge" class="hidden ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-emerald-600 text-white font-bold">0</span>
+      </button>
+      <button onclick="switchTab('tab-oferta')" id="nav-tab-oferta" class="tab-btn px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-600 hover:bg-slate-100">
+        <span>💰</span> <span>5. Oferta & WhatsApp</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============================================================================== -->
+  <!-- CONTENEDOR PRINCIPAL -->
+  <!-- ============================================================================== -->
+  <main class="max-w-6xl mx-auto px-3 sm:px-6 py-4 flex-1 w-full">
+
+    <!-- ========================================================================== -->
+    <!-- PESTAÑA 1: DATOS DEL VEHÍCULO Y CLIENTE -->
+    <!-- ========================================================================== -->
+    <div id="tab-vehiculo" class="tab-content space-y-4">
+      
+      <!-- Card: Alerta rápida de vehículo en patio -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-100">
+          <div>
+            <h2 class="text-lg font-bold text-[#1E2B31] font-serif flex items-center gap-2">
+              <span>🚘</span> Datos Principales del Vehículo
+            </h2>
+            <p class="text-xs text-slate-500">Ingresá la información base para que Jonathan reconozca el auto al instante</p>
+          </div>
+          <!-- Botón de carga de ejemplo para pruebas rápidas -->
+          <button type="button" onclick="loadSampleCar()" class="text-xs font-bold text-[#3E545F] hover:text-[#1E2B31] bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg self-start sm:self-auto transition-colors">
+            ⚡ Cargar Ejemplo de Prueba
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+          
+          <!-- Marca -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Marca *</label>
+            <input type="text" id="carMarca" list="marcasList" placeholder="Ej: Volkswagen, Toyota, Chevrolet..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-[#2D3E46] focus:border-transparent outline-none">
+            <datalist id="marcasList">
+              <option value="Volkswagen">
+              <option value="Chevrolet">
+              <option value="Toyota">
+              <option value="Peugeot">
+              <option value="Renault">
+              <option value="Fiat">
+              <option value="Ford">
+              <option value="Hyundai">
+              <option value="Suzuki">
+              <option value="Nissan">
+              <option value="Honda">
+              <option value="Citroën">
+              <option value="Jeep">
+              <option value="BMW">
+              <option value="Mercedes-Benz">
+              <option value="Audi">
+            </datalist>
+          </div>
+
+          <!-- Modelo -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Modelo *</label>
+            <input type="text" id="carModelo" placeholder="Ej: Gol Trend, Onix, 208, Hilux, Strada..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-[#2D3E46] focus:border-transparent outline-none">
+          </div>
+
+          <!-- Versión / Motor -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Versión / Motor</label>
+            <input type="text" id="carVersion" placeholder="Ej: 1.6 MSI Comfortline, 1.0 T LTZ..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm focus:bg-white focus:ring-2 focus:ring-[#2D3E46] focus:border-transparent outline-none">
+          </div>
+
+          <!-- Año -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Año de Fabricación *</label>
+            <input type="number" id="carAno" placeholder="Ej: 2020" min="1990" max="2027" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-[#2D3E46] focus:border-transparent outline-none">
+          </div>
+
+          <!-- Kilometraje -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Kilometraje Real (KM) *</label>
+            <input type="number" id="carKm" placeholder="Ej: 64500" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-[#2D3E46] focus:border-transparent outline-none">
+          </div>
+
+          <!-- Matrícula / Patente -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Matrícula / Patente</label>
+            <input type="text" id="carPatente" placeholder="Ej: SBX 1234" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-bold uppercase tracking-wider focus:bg-white focus:ring-2 focus:ring-[#2D3E46] focus:border-transparent outline-none">
+          </div>
+
+          <!-- Color -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Color de Carrocería</label>
+            <input type="text" id="carColor" placeholder="Ej: Gris Plata, Blanco, Negro, Rojo..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm focus:bg-white focus:ring-2 focus:ring-[#2D3E46] focus:border-transparent outline-none">
+          </div>
+
+          <!-- Transmisión -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Transmisión (Caja)</label>
+            <select id="carTransmision" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] focus:border-transparent outline-none">
+              <option value="Manual" selected>Manual</option>
+              <option value="Automática">Automática / Secuencial</option>
+              <option value="CVT">Automática CVT</option>
+              <option value="Doble Embrague (DSG/Powershift)">Doble Embrague (DSG/Powershift)</option>
+            </select>
+          </div>
+
+          <!-- Combustible -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Combustible</label>
+            <select id="carCombustible" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] focus:border-transparent outline-none">
+              <option value="Nafta" selected>Nafta</option>
+              <option value="Diésel">Diésel</option>
+              <option value="Híbrido">Híbrido</option>
+              <option value="Eléctrico 100%">Eléctrico 100%</option>
+              <option value="Nafta + GNC">Nafta + GNC</option>
+            </select>
+          </div>
+
+          <!-- Cantidad de Llaves -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Juegos de Llaves</label>
+            <select id="carLlaves" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] focus:border-transparent outline-none">
+              <option value="2 llaves con comando" selected>2 llaves originales (con telemando)</option>
+              <option value="1 sola llave con comando">1 sola llave (con telemando)</option>
+              <option value="1 sola llave manual">1 sola llave común (sin comando)</option>
+              <option value="Copia genérica">Copia genérica / Tallada</option>
+            </select>
+          </div>
+
+          <!-- Dueños / Historial -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Origen / Dueños</label>
+            <select id="carDuenos" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] focus:border-transparent outline-none">
+              <option value="Único dueño de 0km" selected>Único dueño de 0km</option>
+              <option value="Segundo dueño">Segundo dueño</option>
+              <option value="Varios dueños">Varios dueños</option>
+              <option value="Flota / Empresa">Flota de empresa / Rent a Car</option>
+            </select>
+          </div>
+
+          <!-- Services Oficiales -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Libreta de Mantenimiento</label>
+            <select id="carService" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] focus:border-transparent outline-none">
+              <option value="Service Oficial con libro sellado" selected>Service Oficial (libro sellado)</option>
+              <option value="Mantenimiento en taller particular comprobable">Taller particular comprobable</option>
+              <option value="Sin comprobantes de service">Sin comprobantes de service</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Card: Datos del Cliente (Opcional si vino al local) -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm">
+        <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wide mb-3 flex items-center gap-2">
+          <span>👤</span> Datos del Cliente Presente en el Patio
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Nombre y Apellido</label>
+            <input type="text" id="clientNombre" placeholder="Ej: Carlos Silva" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Teléfono / WhatsApp</label>
+            <input type="tel" id="clientTelefono" placeholder="Ej: 099 123 456" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Objetivo del Cliente</label>
+            <select id="clientObjetivo" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="Venta directa al contado (necesita el dinero)" selected>Venta directa contado (quiere efectivo)</option>
+              <option value="Entrega como parte de pago (Permuta)">Permuta (entrega por auto de CARVLAK)</option>
+              <option value="Solo vino a consultar valor">Solo consultar valor de mercado</option>
+              <option value="Dejarlo en consignación">Dejarlo en consignación</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón siguiente -->
+      <div class="flex justify-end pt-2">
+        <button type="button" onclick="switchTab('tab-carroceria')" class="btn-touch bg-[#2D3E46] hover:bg-[#1E2B31] text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 shadow-sm active:scale-95 transition-all">
+          <span>Siguiente: Inspección de Chapa & Daño Estructural</span>
+          <span>➡️</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================== -->
+    <!-- PESTAÑA 2: CARROCERÍA, DAÑO ESTRUCTURAL & MAPA DE PANELES -->
+    <!-- ========================================================================== -->
+    <div id="tab-carroceria" class="tab-content hidden space-y-4">
+      
+      <!-- SECCIÓN 1: ALERTA CRÍTICA DE DAÑO ESTRUCTURAL -->
+      <div id="structuralCard" class="bg-white rounded-2xl p-4 sm:p-5 border-2 border-slate-200 transition-all shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xl">⚠️</span>
+              <h2 class="text-lg font-bold text-[#1E2B31] font-serif">Daño Estructural / Chasis</h2>
+            </div>
+            <p class="text-xs text-slate-500 mt-0.5">Jonathan necesita saber de inmediato si el auto sufrió un choque grave o corte estructural</p>
+          </div>
+
+          <!-- Selector Sí / No Daño Estructural -->
+          <div class="flex items-center gap-2 bg-slate-100 p-1 rounded-xl">
+            <button type="button" id="btnStructNo" onclick="setStructuralDamage(false)" class="px-4 py-2 rounded-lg text-xs font-bold transition-all bg-emerald-600 text-white shadow-sm">
+              ✅ ESTRUCTURA SANA
+            </button>
+            <button type="button" id="btnStructYes" onclick="setStructuralDamage(true)" class="px-4 py-2 rounded-lg text-xs font-bold transition-all text-slate-700 hover:bg-rose-100">
+              🚨 TIENE DAÑO ESTRUCTURAL
+            </button>
+          </div>
+        </div>
+
+        <!-- Opciones detalladas si tiene daño estructural -->
+        <div id="structuralDetailsBox" class="hidden mt-3 pt-3 border-t border-rose-200 bg-rose-50/70 p-3 rounded-xl">
+          <p class="text-xs font-bold text-rose-900 mb-2">Marcar componentes estructurales comprometidos:</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-xs">
+            <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-rose-200 cursor-pointer">
+              <input type="checkbox" class="struct-check rounded text-rose-600" value="Puntas de chasis reparadas/arrugadas" onchange="updateInspectionSummary()">
+              <span>Puntas de chasis</span>
+            </label>
+            <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-rose-200 cursor-pointer">
+              <input type="checkbox" class="struct-check rounded text-rose-600" value="Largueros con deformación/soldadura" onchange="updateInspectionSummary()">
+              <span>Largueros tocados</span>
+            </label>
+            <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-rose-200 cursor-pointer">
+              <input type="checkbox" class="struct-check rounded text-rose-600" value="Panel parallamas / cortafuegos reparado" onchange="updateInspectionSummary()">
+              <span>Panel parallamas</span>
+            </label>
+            <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-rose-200 cursor-pointer">
+              <input type="checkbox" class="struct-check rounded text-rose-600" value="Piso de baúl / cola aplastada" onchange="updateInspectionSummary()">
+              <span>Piso de baúl / cola</span>
+            </label>
+            <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-rose-200 cursor-pointer">
+              <input type="checkbox" class="struct-check rounded text-rose-600" value="Pilares cortados o estirados (A, B o C)" onchange="updateInspectionSummary()">
+              <span>Pilares cortados / estirados</span>
+            </label>
+            <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-rose-200 cursor-pointer">
+              <input type="checkbox" class="struct-check rounded text-rose-600" value="Airbags disparados / tapas pegadas" onchange="updateInspectionSummary()">
+              <span>Airbags disparados</span>
+            </label>
+          </div>
+          <div class="mt-2">
+            <input type="text" id="structuralNotes" placeholder="Detalle específico del daño para Jonathan..." class="w-full bg-white border border-rose-300 rounded-lg px-3 py-1.5 text-xs text-rose-950 font-medium outline-none">
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 2: MAPA INTERACTIVO DE PANELES DE CARROCERÍA -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-100">
+          <div>
+            <h2 class="text-lg font-bold text-[#1E2B31] font-serif flex items-center gap-2">
+              <span>🎨</span> Mapa Interactivo de Carrocería & Pintura
+            </h2>
+            <p class="text-xs text-slate-500">Tocá cada panel en el diagrama o en la lista para cambiar su estado</p>
+          </div>
+
+          <!-- Leyenda de colores interactiva -->
+          <div class="flex flex-wrap items-center gap-2 text-[11px] font-semibold">
+            <span class="inline-flex items-center gap-1 bg-slate-100 px-2 py-1 rounded-md border border-slate-200">
+              <span class="w-3 h-3 rounded-full bg-slate-300 border border-slate-400"></span> Original
+            </span>
+            <span class="inline-flex items-center gap-1 bg-amber-50 px-2 py-1 rounded-md border border-amber-200 text-amber-900">
+              <span class="w-3 h-3 rounded-full bg-[#FDE047] border border-amber-500"></span> Repintada
+            </span>
+            <span class="inline-flex items-center gap-1 bg-orange-50 px-2 py-1 rounded-md border border-orange-200 text-orange-900">
+              <span class="w-3 h-3 rounded-full bg-[#FB923C] border border-orange-500"></span> Masilla
+            </span>
+            <span class="inline-flex items-center gap-1 bg-rose-50 px-2 py-1 rounded-md border border-rose-200 text-rose-900">
+              <span class="w-3 h-3 rounded-full bg-[#F87171] border border-rose-500"></span> Dañada
+            </span>
+          </div>
+        </div>
+
+        <!-- Contenedor del Diagrama Visual SVG + Controles Laterales -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <!-- DIAGRAMA DEL VEHÍCULO (SVG) -->
+          <div class="lg:col-span-6 flex flex-col items-center bg-slate-50/80 p-4 rounded-2xl border border-slate-200">
+            <div class="w-full flex justify-between items-center mb-2 px-2 text-xs font-bold text-slate-500">
+              <span>FRENTE ⬆️</span>
+              <span class="text-[11px] text-slate-400">Toca para rotar estado</span>
+            </div>
+
+            <!-- SVG CAR BLUEPRINT -->
+            <div class="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[1/2]">
+              <svg viewBox="0 0 300 600" class="w-full h-full select-none" id="carSvgMap">
+                <!-- Sombra base del auto -->
+                <ellipse cx="150" cy="300" rx="120" ry="260" fill="#E2E8F0" opacity="0.6"/>
+                
+                <!-- Ruedas -->
+                <rect x="24" y="90" width="22" height="60" rx="6" fill="#1E293B"/>
+                <rect x="254" y="90" width="22" height="60" rx="6" fill="#1E293B"/>
+                <rect x="24" y="440" width="22" height="60" rx="6" fill="#1E293B"/>
+                <rect x="254" y="440" width="22" height="60" rx="6" fill="#1E293B"/>
+
+                <!-- Contorno de Carrocería General -->
+                <!-- Paragolpes Delantero -->
+                <path id="part-paragolpes_del" data-name="Paragolpes Delantero" class="car-part state-original" d="M 60 40 C 90 20, 210 20, 240 40 C 255 52, 255 70, 245 78 C 210 65, 90 65, 55 78 C 45 70, 45 52, 60 40 Z"/>
+
+                <!-- Capó -->
+                <path id="part-capo" data-name="Capó" class="car-part state-original" d="M 62 82 C 100 75, 200 75, 238 82 L 244 195 C 190 200, 110 200, 56 195 Z"/>
+
+                <!-- Parabrisas Delantero -->
+                <path id="part-parabrisas" data-name="Parabrisas" class="car-part state-original" d="M 64 205 C 110 207, 190 207, 236 205 L 226 265 C 180 263, 120 263, 74 265 Z"/>
+
+                <!-- Techo -->
+                <path id="part-techo" data-name="Techo" class="car-part state-original" d="M 76 273 C 120 271, 180 271, 224 273 L 222 395 C 180 397, 120 397, 78 395 Z"/>
+
+                <!-- Luneta Trasera -->
+                <path id="part-luneta" data-name="Luneta Trasera" class="car-part state-original" d="M 76 403 C 120 401, 180 401, 224 403 L 232 455 C 185 457, 115 457, 68 455 Z"/>
+
+                <!-- Baúl / Portón Trasero -->
+                <path id="part-baul" data-name="Baúl / Portón" class="car-part state-original" d="M 66 463 C 115 465, 185 465, 234 463 L 238 535 C 190 542, 110 542, 62 535 Z"/>
+
+                <!-- Paragolpes Trasero -->
+                <path id="part-paragolpes_tras" data-name="Paragolpes Trasero" class="car-part state-original" d="M 58 543 C 110 550, 190 550, 242 543 C 255 555, 250 575, 235 582 C 190 590, 110 590, 65 582 C 50 575, 45 555, 58 543 Z"/>
+
+                <!-- LATERALES IZQUIERDOS (Visto desde arriba, izq es pantalla derecha o izquierda? Estandar: izquierda de imagen = Lado Conductor/Izq) -->
+                <!-- Guardabarros Delantero Izquierdo -->
+                <path id="part-guardabarros_del_izq" data-name="Guardabarros Del. Izquierdo" class="car-part state-original" d="M 52 80 L 60 82 L 54 195 L 42 190 C 38 150, 42 110, 52 80 Z"/>
+
+                <!-- Puerta Delantera Izquierda -->
+                <path id="part-puerta_del_izq" data-name="Puerta Del. Izquierda" class="car-part state-original" d="M 42 198 L 62 203 L 72 325 L 44 325 C 40 280, 40 240, 42 198 Z"/>
+
+                <!-- Puerta Trasera Izquierda -->
+                <path id="part-puerta_tras_izq" data-name="Puerta Tras. Izquierda" class="car-part state-original" d="M 44 333 L 74 333 L 74 445 L 44 445 C 42 410, 42 370, 44 333 Z"/>
+
+                <!-- Guardabarros Trasero Izquierdo -->
+                <path id="part-guardabarros_tras_izq" data-name="Guardabarros Tras. Izquierdo" class="car-part state-original" d="M 44 453 L 64 458 L 58 538 L 48 530 C 42 505, 42 475, 44 453 Z"/>
+
+                <!-- LATERALES DERECHOS -->
+                <!-- Guardabarros Delantero Derecho -->
+                <path id="part-guardabarros_del_der" data-name="Guardabarros Del. Derecho" class="car-part state-original" d="M 248 80 C 258 110, 262 150, 258 190 L 246 195 L 240 82 Z"/>
+
+                <!-- Puerta Delantera Derecha -->
+                <path id="part-puerta_del_der" data-name="Puerta Del. Derecha" class="car-part state-original" d="M 258 198 C 260 240, 260 280, 256 325 L 228 325 L 238 203 Z"/>
+
+                <!-- Puerta Trasera Derecha -->
+                <path id="part-puerta_tras_der" data-name="Puerta Tras. Derecha" class="car-part state-original" d="M 256 333 C 258 370, 258 410, 256 445 L 226 445 L 226 333 Z"/>
+
+                <!-- Guardabarros Trasero Derecho -->
+                <path id="part-guardabarros_tras_der" data-name="Guardabarros Tras. Derecho" class="car-part state-original" d="M 256 453 C 258 475, 258 505, 252 530 L 242 538 L 236 458 Z"/>
+
+                <!-- Textos en el SVG -->
+                <text x="150" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#64748B" pointer-events="none">CAPÓ</text>
+                <text x="150" y="340" text-anchor="middle" font-size="12" font-weight="bold" fill="#64748B" pointer-events="none">TECHO</text>
+                <text x="150" y="500" text-anchor="middle" font-size="11" font-weight="bold" fill="#64748B" pointer-events="none">BAÚL</text>
+              </svg>
+            </div>
+
+            <div class="w-full flex justify-between items-center mt-2 px-2 text-xs font-bold text-slate-500">
+              <span>ATRÁS ⬇️</span>
+              <button type="button" onclick="resetAllPanels()" class="text-[11px] text-[#C0392B] hover:underline font-bold">
+                Resetear todo a Original
+              </button>
+            </div>
+          </div>
+
+          <!-- LISTA DE PANELES Y ACCIONES RÁPIDAS -->
+          <div class="lg:col-span-6 space-y-3">
+            
+            <!-- Resumen en vivo de piezas no originales -->
+            <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-amber-900 uppercase">Piezas Repintadas / Dañadas:</span>
+                <span id="panelsSummaryBadge" class="text-xs font-extrabold bg-amber-200 text-amber-900 px-2.5 py-0.5 rounded-full">
+                  0 piezas
+                </span>
+              </div>
+              <p id="panelsDetailText" class="text-xs text-amber-800 mt-1 italic">
+                Vehículo 100% original de fábrica en todos sus paneles.
+              </p>
+            </div>
+
+            <!-- Grilla de botones rápidos para cada pieza -->
+            <div class="text-xs font-bold text-slate-700 uppercase">Tocar para cambiar estado:</div>
+            <div class="grid grid-cols-2 gap-2 text-xs max-h-[380px] overflow-y-auto pr-1">
+              
+              <!-- Piezas Frente -->
+              <button type="button" onclick="cyclePanelState('paragolpes_del')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Paragolpes Del.</span>
+                <span id="badge-paragolpes_del" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+
+              <button type="button" onclick="cyclePanelState('capo')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Capó</span>
+                <span id="badge-capo" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+
+              <!-- Laterales Izquierdos -->
+              <button type="button" onclick="cyclePanelState('guardabarros_del_izq')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Guardab. Del. Izq.</span>
+                <span id="badge-guardabarros_del_izq" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+
+              <button type="button" onclick="cyclePanelState('guardabarros_del_der')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Guardab. Del. Der.</span>
+                <span id="badge-guardabarros_del_der" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+
+              <button type="button" onclick="cyclePanelState('puerta_del_izq')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Puerta Del. Izq.</span>
+                <span id="badge-puerta_del_izq" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+
+              <button type="button" onclick="cyclePanelState('puerta_del_der')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Puerta Del. Der.</span>
+                <span id="badge-puerta_del_der" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+
+              <button type="button" onclick="cyclePanelState('puerta_tras_izq')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Puerta Tras. Izq.</span>
+                <span id="badge-puerta_tras_izq" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+
+              <button type="button" onclick="cyclePanelState('puerta_tras_der')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Puerta Tras. Der.</span>
+                <span id="badge-puerta_tras_der" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+
+              <button type="button" onclick="cyclePanelState('guardabarros_tras_izq')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Guardab. Tras. Izq.</span>
+                <span id="badge-guardabarros_tras_izq" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+
+              <button type="button" onclick="cyclePanelState('guardabarros_tras_der')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Guardab. Tras. Der.</span>
+                <span id="badge-guardabarros_tras_der" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+
+              <!-- Techo y Cola -->
+              <button type="button" onclick="cyclePanelState('techo')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Techo</span>
+                <span id="badge-techo" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+
+              <button type="button" onclick="cyclePanelState('baul')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Baúl / Portón</span>
+                <span id="badge-baul" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+
+              <button type="button" onclick="cyclePanelState('paragolpes_tras')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Paragolpes Tras.</span>
+                <span id="badge-paragolpes_tras" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+
+              <button type="button" onclick="cyclePanelState('parabrisas')" class="panel-btn text-left p-2 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                <span class="font-medium truncate">Parabrisas</span>
+                <span id="badge-parabrisas" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Original</span>
+              </button>
+            </div>
+
+            <!-- Notas de chapa y pintura -->
+            <div class="pt-2">
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Observaciones adicionales de Chapa & Pintura:</label>
+              <input type="text" id="paintNotes" placeholder="Ej: Rayón superficial en guardabarros, techo con laca impecable..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Navegación entre pestañas -->
+      <div class="flex justify-between pt-2">
+        <button type="button" onclick="switchTab('tab-vehiculo')" class="btn-touch bg-slate-200 hover:bg-slate-300 text-slate-700 px-5 py-3 rounded-xl font-bold text-sm flex items-center gap-2">
+          <span>⬅️</span> <span>Volver a Datos</span>
+        </button>
+        <button type="button" onclick="switchTab('tab-mecanica')" class="btn-touch bg-[#2D3E46] hover:bg-[#1E2B31] text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 shadow-sm active:scale-95 transition-all">
+          <span>Siguiente: Mecánica & Cubiertas</span> <span>➡️</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================== -->
+    <!-- PESTAÑA 3: MECÁNICA, INTERIOR & CUBIERTAS -->
+    <!-- ========================================================================== -->
+    <div id="tab-mecanica" class="tab-content hidden space-y-4">
+      
+      <!-- MECÁNICA Y MOTOR -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm">
+        <h2 class="text-lg font-bold text-[#1E2B31] font-serif flex items-center gap-2 pb-3 mb-3 border-b border-slate-100">
+          <span>⚙️</span> Estado Mecánico, Motor & Caja
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+          
+          <!-- Sonido del Motor -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Funcionamiento Motor</label>
+            <select id="motorSonido" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="Sereno, silencioso y parejo (impecable)" selected>Sereno, parejo (impecable)</option>
+              <option value="Leve ruido a válvulas/botadores en frío">Leve ruido a válvulas en frío</option>
+              <option value="Golpeteo mecánico o ruido interno">⚠️ Golpeteo mecánico / Ruidos</option>
+              <option value="Falla de cilindro / tiembla">⚠️ Falla un cilindro / tiembla</option>
+            </select>
+          </div>
+
+          <!-- Humos de escape -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Gases / Humo de Escape</label>
+            <select id="motorHumo" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="Sin humo (Gases limpios)" selected>Sin humo (Limpio)</option>
+              <option value="Humo negro (exceso de combustible)">Humo negro (combustión)</option>
+              <option value="Humo azul (quema aceite)">🚨 Humo azul (quema aceite)</option>
+              <option value="Humo blanco constante (refrigerante)">🚨 Humo blanco (refrigerante)</option>
+            </select>
+          </div>
+
+          <!-- Pérdidas de fluidos -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Pérdidas de Aceite / Agua</label>
+            <select id="motorPerdidas" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="Motor completamente seco (sin pérdidas)" selected>Completamente seco (sin pérdidas)</option>
+              <option value="Sudoración normal por cárter/tapa">Sudoración leve (normal)</option>
+              <option value="Gotea aceite visible">⚠️ Gotea aceite en piso</option>
+              <option value="Pérdida de refrigerante / manguera">⚠️ Pérdida de agua / refrigerante</option>
+            </select>
+          </div>
+
+          <!-- Caja y Embrague -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Embrague / Caja de Cambios</label>
+            <select id="mecanicaCaja" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="Embrague suave, entran todos los cambios perfecto" selected>Suave, cambios entran perfecto</option>
+              <option value="Pedal algo duro pero acopla bien">Pedal algo duro pero acopla bien</option>
+              <option value="Embrague patinando (alto)">⚠️ Embrague patina / Para cambio</option>
+              <option value="Caja automática con tironeos o demora">🚨 Tironeos en caja automática</option>
+            </select>
+          </div>
+
+          <!-- Luces Testigo Tablero -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tablero / Testigos de Falla</label>
+            <select id="testigosTablero" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="Tablero 100% limpio (sin luces testigo)" selected>✅ Tablero limpio (sin testigos)</option>
+              <option value="Luz Check Engine encendida">⚠️ Check Engine encendido</option>
+              <option value="Luz de Airbag encendida">🚨 Testigo Airbag encendido</option>
+              <option value="Luz de ABS / ESP encendida">⚠️ Testigo ABS / Frenos</option>
+              <option value="Aviso de Service pendiente">Aviso de Service pendiente</option>
+            </select>
+          </div>
+
+          <!-- Aire Acondicionado / Climatizador -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Aire Acondicionado</label>
+            <select id="aireAcondicionado" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="Enfría perfecto (hiela)" selected>❄️ Enfría perfecto (hiela)</option>
+              <option value="Ventila pero no enfría (falta gas o compresor)">⚠️ Ventila pero NO enfría</option>
+              <option value="No prende el aire / soplador trabado">🚨 No prende / fuera de servicio</option>
+              <option value="Sin aire de fábrica">Sin aire de fábrica</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CUBIERTAS & TREN DELANTERO -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm">
+        <h2 class="text-lg font-bold text-[#1E2B31] font-serif flex items-center gap-2 pb-3 mb-3 border-b border-slate-100">
+          <span>🛞</span> Neumáticos, Llantas & Suspensión
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          
+          <!-- Cubiertas Delanteras -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Delanteras (%)</label>
+            <select id="cubiertasDelanteras" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="Nuevas (90-100%)">Nuevas (90-100%)</option>
+              <option value="Buenas (70-80%)" selected>Buenas (70-80%)</option>
+              <option value="Medio uso (40-50%)">Medio uso (40-50%)</option>
+              <option value="Gastadas / Para cambio (<30%)">⚠️ Lisas / Para cambio</option>
+            </select>
+          </div>
+
+          <!-- Cubiertas Traseras -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Traseras (%)</label>
+            <select id="cubiertasTraseras" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="Nuevas (90-100%)">Nuevas (90-100%)</option>
+              <option value="Buenas (70-80%)" selected>Buenas (70-80%)</option>
+              <option value="Medio uso (40-50%)">Medio uso (40-50%)</option>
+              <option value="Gastadas / Para cambio (<30%)">⚠️ Lisas / Para cambio</option>
+            </select>
+          </div>
+
+          <!-- Rueda de Auxilio -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Auxilio & Herramientas</label>
+            <select id="cubiertasAuxilio" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="Auxilio sin rodar + crique y llave" selected>Sin rodar + crique completo</option>
+              <option value="Auxilio bueno + herramientas">Auxilio bueno con crique</option>
+              <option value="Auxilio gastado o temporal">Auxilio gastado / temporal</option>
+              <option value="Sin rueda de auxilio">🚨 Sin auxilio / Sin crique</option>
+            </select>
+          </div>
+
+          <!-- Llantas & Suspensión -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Estado de Llantas</label>
+            <select id="llantasEstado" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="Llantas sanas (sin cordoneos)" selected>Sanas (sin cordoneos)</option>
+              <option value="Detalles menores de cordoneo">Leves raspones de cordón</option>
+              <option value="Llanta golpeada o desalineada">⚠️ Llanta golpeada</option>
+              <option value="Tazas plásticas sanas">Tazas plásticas sanas</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- INTERIOR & DOCUMENTACIÓN -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm">
+        <h2 class="text-lg font-bold text-[#1E2B31] font-serif flex items-center gap-2 pb-3 mb-3 border-b border-slate-100">
+          <span>📑</span> Interior & Situación de Papeles
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+          
+          <!-- Tapizados e Interior -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Estado del Interior</label>
+            <select id="interiorEstado" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="Impecable (sin manchas, quemaduras ni roturas)" selected>Impecable (muy cuidado)</option>
+              <option value="Bueno (desgaste acorde al uso)">Bueno (desgaste normal)</option>
+              <option value="Necesita limpieza de tapizados profunda">Sucio (requiere detailing)</option>
+              <option value="Tapizado roto / quemadura de cigarrillo">⚠️ Roto / Quemadura cigarrillo</option>
+            </select>
+          </div>
+
+          <!-- Libreta de Propiedad -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Libreta de Propiedad</label>
+            <select id="docsLibreta" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="Libreta original en mano" selected>✅ Original en mano</option>
+              <option value="Fotocopia de libreta">Fotocopia (titular tramita duplicado)</option>
+              <option value="Extraviada (denuncia policial)">⚠️ Extraviada</option>
+            </select>
+          </div>
+
+          <!-- Títulos y Transferencia -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Títulos / Titularidad</label>
+            <select id="docsTitulos" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              <option value="A nombre del cliente presente (firma directa)" selected>✅ A nombre del cliente (firma directa)</option>
+              <option value="Títulos a favor con poder vigente">Títulos con poder vigente</option>
+              <option value="Falta hacer transferencia (carta poder)">Falta transferir / Tercero</option>
+              <option value="Prenda bancaria (a cancelar)">⚠️ Prenda bancaria a cancelar</option>
+            </select>
+          </div>
+
+          <!-- Patente SUCIVE -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Patente SUCIVE</label>
+            <div class="flex gap-2">
+              <select id="docsSuciveStatus" onchange="toggleDeudaInput('docsSuciveStatus', 'docsSuciveMonto')" class="bg-slate-50 border border-slate-300 rounded-xl px-2 py-2 text-xs font-medium focus:bg-white outline-none">
+                <option value="Al día (paga todo el año)" selected>Al día</option>
+                <option value="Cuotas pendientes">Con deuda</option>
+              </select>
+              <input type="number" id="docsSuciveMonto" placeholder="$ Deuda ($UYU)" disabled class="w-full bg-slate-100 border border-slate-300 rounded-xl px-3 py-2 text-xs font-bold outline-none">
+            </div>
+          </div>
+
+          <!-- Multas de Tránsito -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Multas de Tránsito</label>
+            <div class="flex gap-2">
+              <select id="docsMultasStatus" onchange="toggleDeudaInput('docsMultasStatus', 'docsMultasMonto')" class="bg-slate-50 border border-slate-300 rounded-xl px-2 py-2 text-xs font-medium focus:bg-white outline-none">
+                <option value="Sin multas" selected>Sin multas</option>
+                <option value="Tiene multas">Con multas</option>
+              </select>
+              <input type="number" id="docsMultasMonto" placeholder="$ Multas ($UYU)" disabled class="w-full bg-slate-100 border border-slate-300 rounded-xl px-3 py-2 text-xs font-bold outline-none">
+            </div>
+          </div>
+
+          <!-- Notas Mecánicas / Generales -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Notas Rápidas para Jonathan</label>
+            <input type="text" id="mecanicaNotes" placeholder="Ej: Frena bien, amortiguadores firmes..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Navegación entre pestañas -->
+      <div class="flex justify-between pt-2">
+        <button type="button" onclick="switchTab('tab-carroceria')" class="btn-touch bg-slate-200 hover:bg-slate-300 text-slate-700 px-5 py-3 rounded-xl font-bold text-sm flex items-center gap-2">
+          <span>⬅️</span> <span>Volver a Carrocería</span>
+        </button>
+        <button type="button" onclick="switchTab('tab-fotos')" class="btn-touch bg-[#2D3E46] hover:bg-[#1E2B31] text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 shadow-sm active:scale-95 transition-all">
+          <span>Siguiente: Fotos en Vivo</span> <span>➡️</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================== -->
+    <!-- PESTAÑA 4: FOTOS EN VIVO CON LA CÁMARA -->
+    <!-- ========================================================================== -->
+    <div id="tab-fotos" class="tab-content hidden space-y-4">
+      
+      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-100">
+          <div>
+            <h2 class="text-lg font-bold text-[#1E2B31] font-serif flex items-center gap-2">
+              <span>📸</span> Fotos del Peritaje en Vivo
+            </h2>
+            <p class="text-xs text-slate-500">Tomá las fotos guiadas con la cámara del celular. Se comprimen automáticamente para no demorar.</p>
+          </div>
+
+          <!-- Botón de acción con fotos -->
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="sharePhotosToWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm active:scale-95">
+              <span>📲</span> <span>Enviar Fotos a Jonathan</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- GRILLA DE RANURAS DE FOTOS GUIADAS -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+          
+          <!-- Ranura 1: Frente 3/4 -->
+          <div class="photo-slot" id="slot-frente" onclick="triggerPhotoInput('frente')">
+            <input type="file" id="input-frente" accept="image/*" capture="environment" class="hidden" onchange="handlePhotoUpload('frente', this)">
+            <div id="placeholder-frente" class="text-center p-2">
+              <span class="text-2xl block mb-1">🚘</span>
+              <span class="text-xs font-bold text-slate-700 block">Frente 3/4</span>
+              <span class="text-[10px] text-slate-400">Tocar para foto</span>
+            </div>
+            <img id="img-frente" class="hidden" alt="Frente">
+            <button type="button" id="del-frente" onclick="event.stopPropagation(); deletePhoto('frente')" class="photo-badge-del hidden">&times;</button>
+          </div>
+
+          <!-- Ranura 2: Lateral Izquierdo -->
+          <div class="photo-slot" id="slot-lat_izq" onclick="triggerPhotoInput('lat_izq')">
+            <input type="file" id="input-lat_izq" accept="image/*" capture="environment" class="hidden" onchange="handlePhotoUpload('lat_izq', this)">
+            <div id="placeholder-lat_izq" class="text-center p-2">
+              <span class="text-2xl block mb-1">🚗</span>
+              <span class="text-xs font-bold text-slate-700 block">Lateral Izq.</span>
+              <span class="text-[10px] text-slate-400">Tocar para foto</span>
+            </div>
+            <img id="img-lat_izq" class="hidden" alt="Lateral Izquierdo">
+            <button type="button" id="del-lat_izq" onclick="event.stopPropagation(); deletePhoto('lat_izq')" class="photo-badge-del hidden">&times;</button>
+          </div>
+
+          <!-- Ranura 3: Lateral Derecho -->
+          <div class="photo-slot" id="slot-lat_der" onclick="triggerPhotoInput('lat_der')">
+            <input type="file" id="input-lat_der" accept="image/*" capture="environment" class="hidden" onchange="handlePhotoUpload('lat_der', this)">
+            <div id="placeholder-lat_der" class="text-center p-2">
+              <span class="text-2xl block mb-1">🚙</span>
+              <span class="text-xs font-bold text-slate-700 block">Lateral Der.</span>
+              <span class="text-[10px] text-slate-400">Tocar para foto</span>
+            </div>
+            <img id="img-lat_der" class="hidden" alt="Lateral Derecho">
+            <button type="button" id="del-lat_der" onclick="event.stopPropagation(); deletePhoto('lat_der')" class="photo-badge-del hidden">&times;</button>
+          </div>
+
+          <!-- Ranura 4: Trasera 3/4 -->
+          <div class="photo-slot" id="slot-trasera" onclick="triggerPhotoInput('trasera')">
+            <input type="file" id="input-trasera" accept="image/*" capture="environment" class="hidden" onchange="handlePhotoUpload('trasera', this)">
+            <div id="placeholder-trasera" class="text-center p-2">
+              <span class="text-2xl block mb-1">🔙</span>
+              <span class="text-xs font-bold text-slate-700 block">Trasera 3/4</span>
+              <span class="text-[10px] text-slate-400">Tocar para foto</span>
+            </div>
+            <img id="img-trasera" class="hidden" alt="Trasera">
+            <button type="button" id="del-trasera" onclick="event.stopPropagation(); deletePhoto('trasera')" class="photo-badge-del hidden">&times;</button>
+          </div>
+
+          <!-- Ranura 5: Interior / Butacas -->
+          <div class="photo-slot" id="slot-interior" onclick="triggerPhotoInput('interior')">
+            <input type="file" id="input-interior" accept="image/*" capture="environment" class="hidden" onchange="handlePhotoUpload('interior', this)">
+            <div id="placeholder-interior" class="text-center p-2">
+              <span class="text-2xl block mb-1">💺</span>
+              <span class="text-xs font-bold text-slate-700 block">Interior / Butacas</span>
+              <span class="text-[10px] text-slate-400">Tocar para foto</span>
+            </div>
+            <img id="img-interior" class="hidden" alt="Interior">
+            <button type="button" id="del-interior" onclick="event.stopPropagation(); deletePhoto('interior')" class="photo-badge-del hidden">&times;</button>
+          </div>
+
+          <!-- Ranura 6: Tablero encendido con KM -->
+          <div class="photo-slot" id="slot-tablero" onclick="triggerPhotoInput('tablero')">
+            <input type="file" id="input-tablero" accept="image/*" capture="environment" class="hidden" onchange="handlePhotoUpload('tablero', this)">
+            <div id="placeholder-tablero" class="text-center p-2">
+              <span class="text-2xl block mb-1">📟</span>
+              <span class="text-xs font-bold text-slate-700 block">Tablero (KM & Testigos)</span>
+              <span class="text-[10px] text-slate-400">Tocar para foto</span>
+            </div>
+            <img id="img-tablero" class="hidden" alt="Tablero">
+            <button type="button" id="del-tablero" onclick="event.stopPropagation(); deletePhoto('tablero')" class="photo-badge-del hidden">&times;</button>
+          </div>
+
+          <!-- Ranura 7: Vano Motor -->
+          <div class="photo-slot" id="slot-motor" onclick="triggerPhotoInput('motor')">
+            <input type="file" id="input-motor" accept="image/*" capture="environment" class="hidden" onchange="handlePhotoUpload('motor', this)">
+            <div id="placeholder-motor" class="text-center p-2">
+              <span class="text-2xl block mb-1">⚙️</span>
+              <span class="text-xs font-bold text-slate-700 block">Vano Motor</span>
+              <span class="text-[10px] text-slate-400">Tocar para foto</span>
+            </div>
+            <img id="img-motor" class="hidden" alt="Motor">
+            <button type="button" id="del-motor" onclick="event.stopPropagation(); deletePhoto('motor')" class="photo-badge-del hidden">&times;</button>
+          </div>
+
+          <!-- Ranura 8: Libreta de Propiedad / Papeles -->
+          <div class="photo-slot" id="slot-libreta" onclick="triggerPhotoInput('libreta')">
+            <input type="file" id="input-libreta" accept="image/*" capture="environment" class="hidden" onchange="handlePhotoUpload('libreta', this)">
+            <div id="placeholder-libreta" class="text-center p-2">
+              <span class="text-2xl block mb-1">📄</span>
+              <span class="text-xs font-bold text-slate-700 block">Libreta / Padrón</span>
+              <span class="text-[10px] text-slate-400">Tocar para foto</span>
+            </div>
+            <img id="img-libreta" class="hidden" alt="Libreta">
+            <button type="button" id="del-libreta" onclick="event.stopPropagation(); deletePhoto('libreta')" class="photo-badge-del hidden">&times;</button>
+          </div>
+
+        </div>
+
+        <!-- SECCIÓN DE FOTOS EXTRAS / DETALLES DE DAÑOS O REPINTADOS -->
+        <div class="mt-5 pt-4 border-t border-slate-100">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold text-slate-700 uppercase flex items-center gap-1.5">
+              <span>🔍</span> Fotos de Detalles Específicos (Rayones, repintados, daños)
+            </h3>
+            <button type="button" onclick="triggerPhotoInput('extra')" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1">
+              <span>➕ Agregar Foto Extra</span>
+            </button>
+            <input type="file" id="input-extra" accept="image/*" capture="environment" multiple class="hidden" onchange="handleExtraPhotosUpload(this)">
+          </div>
+
+          <div id="extraPhotosContainer" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2">
+            <!-- Las fotos extras se renderizan dinámicamente aquí -->
+            <p id="noExtraPhotosText" class="col-span-full text-xs text-slate-400 italic py-2">
+              No hay fotos de detalles agregadas. Tocá "+ Agregar Foto Extra" si necesitás mostrarle un detalle específico a Jonathan.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navegación entre pestañas -->
+      <div class="flex justify-between pt-2">
+        <button type="button" onclick="switchTab('tab-mecanica')" class="btn-touch bg-slate-200 hover:bg-slate-300 text-slate-700 px-5 py-3 rounded-xl font-bold text-sm flex items-center gap-2">
+          <span>⬅️</span> <span>Volver a Mecánica</span>
+        </button>
+        <button type="button" onclick="switchTab('tab-oferta')" class="btn-touch bg-[#2D3E46] hover:bg-[#1E2B31] text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 shadow-sm active:scale-95 transition-all">
+          <span>Siguiente: Números & Enviar a Jonathan</span> <span>➡️</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================== -->
+    <!-- PESTAÑA 5: NÚMEROS, OFERTA SUGERIDA & REPORTE DIRECTO A JONATHAN -->
+    <!-- ========================================================================== -->
+    <div id="tab-oferta" class="tab-content hidden space-y-4">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        
+        <!-- COLUMNA IZQUIERDA: CALCULADORA DE REACONDICIONAMIENTO Y OFERTA -->
+        <div class="lg:col-span-6 space-y-4">
+          
+          <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm space-y-4">
+            <h2 class="text-lg font-bold text-[#1E2B31] font-serif flex items-center gap-2 pb-2 border-b border-slate-100">
+              <span>💵</span> Cálculo de Números & Oferta en Mano
+            </h2>
+
+            <!-- Valor de Venta en Mercado (Plaza) -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">
+                Valor Estimado de Reventa en Plaza (USD) *
+              </label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center font-bold text-slate-400">USD $</span>
+                <input type="number" id="valMercado" placeholder="Ej: 12500" oninput="calculateOfferNumbers()" class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-16 pr-3 py-2.5 text-base font-extrabold text-[#1E2B31] focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">Precio promedio al que se publicaría en CARVLAK / MercadoLibre</p>
+            </div>
+
+            <!-- GASTOS ESTIMADOS DE REACONDICIONAMIENTO -->
+            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-2.5">
+              <span class="text-xs font-bold text-slate-700 uppercase block">
+                Gastos Estimados de Taller / Reacondicionamiento:
+              </span>
+
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <!-- Chapa y Pintura -->
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Chapa y Pintura (USD)</label>
+                  <input type="number" id="costPintura" placeholder="0" oninput="calculateOfferNumbers()" class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 font-bold outline-none">
+                  <span id="costPinturaHelper" class="text-[10px] text-slate-400 block mt-0.5">Auto-calculado según piezas</span>
+                </div>
+
+                <!-- Mecánica / Service -->
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Mecánica / Service (USD)</label>
+                  <input type="number" id="costMecanica" placeholder="0" oninput="calculateOfferNumbers()" class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 font-bold outline-none">
+                </div>
+
+                <!-- Cubiertas -->
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Cubiertas (USD)</label>
+                  <input type="number" id="costCubiertas" placeholder="0" oninput="calculateOfferNumbers()" class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 font-bold outline-none">
+                </div>
+
+                <!-- Deudas Patente / Multas convertidas -->
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Deudas / Trámites (USD)</label>
+                  <input type="number" id="costDeudas" placeholder="0" oninput="calculateOfferNumbers()" class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 font-bold outline-none">
+                </div>
+              </div>
+
+              <!-- Total Gastos Reacondicionamiento -->
+              <div class="flex justify-between items-center pt-2 border-t border-slate-200 text-xs font-bold">
+                <span class="text-slate-600">Total Descuentos Estimados:</span>
+                <span id="totalGastosDisplay" class="text-rose-600 font-extrabold text-sm">- USD $0</span>
+              </div>
+            </div>
+
+            <!-- Pretensión del cliente -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">
+                ¿Cuánto pide / pretende el cliente? (USD)
+              </label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center font-bold text-slate-400">USD $</span>
+                <input type="number" id="valPretensionCliente" placeholder="Ej: 10500" oninput="calculateOfferNumbers()" class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-16 pr-3 py-2 text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              </div>
+            </div>
+
+            <!-- Margen Deseado CARVLAK -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">
+                Margen Mínimo CARVLAK (USD)
+              </label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center font-bold text-slate-400">USD $</span>
+                <input type="number" id="valMargen" value="1500" oninput="calculateOfferNumbers()" class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-16 pr-3 py-2 text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-[#2D3E46] outline-none">
+              </div>
+            </div>
+
+            <!-- TARJETA DE OFERTA RECOMENDADA RESULTANTE -->
+            <div class="bg-emerald-50 border-2 border-emerald-300 p-4 rounded-2xl">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-extrabold uppercase text-emerald-900 tracking-wider">
+                  🎯 Rango de Oferta Sugerido:
+                </span>
+                <span id="statusViabilidad" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-200 text-emerald-900">
+                  Listo para cotizar
+                </span>
+              </div>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span class="text-2xl sm:text-3xl font-black text-emerald-800 font-serif" id="ofertaSugeridaDisplay">
+                  USD $0
+                </span>
+                <span class="text-xs text-emerald-700 font-semibold" id="ofertaRangoSub">
+                  al contado en mano
+                </span>
+              </div>
+              <p class="text-[11px] text-emerald-800 mt-2" id="ofertaCalculoExplicacion">
+                Ingresá el valor estimado de mercado para calcular la oferta ideal.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- COLUMNA DERECHA: PREVIEW DEL MENSAJE DIRECTO A JONATHAN Y BOTONES DE DISPARO -->
+        <div class="lg:col-span-6 space-y-4">
+          
+          <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm space-y-3">
+            
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wide">
+                  Mensaje Listo para Jonathan
+                </h3>
+              </div>
+              <span class="text-[11px] font-bold text-slate-500">WhatsApp Instantáneo</span>
+            </div>
+
+            <!-- Mensaje formateado estilo WhatsApp bubble -->
+            <div class="bg-[#EFEAE2] p-3 sm:p-4 rounded-2xl border border-slate-200 shadow-inner relative overflow-hidden font-sans">
+              <div class="bg-white rounded-xl p-3 text-xs leading-relaxed text-slate-800 shadow-sm whitespace-pre-wrap font-mono select-all" id="whatsappMessagePreview">
+                Cargando datos del peritaje...
+              </div>
+            </div>
+
+            <!-- BOTONES DE ACCIÓN RÁPIDA -->
+            <div class="space-y-2 pt-2">
+              
+              <!-- Botón Primario: Mandar a Jonathan por WhatsApp -->
+              <button type="button" onclick="sendDirectToJonathan()" class="w-full btn-touch bg-emerald-600 hover:bg-emerald-500 active:scale-[0.99] text-white py-3.5 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-md transition-all">
+                <span class="text-xl">📲</span>
+                <span>MANDAR A JONATHAN POR WHATSAPP</span>
+              </button>
+
+              <div class="grid grid-cols-2 gap-2">
+                <!-- Botón Secundario: Compartir fotos a Jonathan -->
+                <button type="button" onclick="sharePhotosToWhatsApp()" class="btn-touch bg-[#2D3E46] hover:bg-[#1E2B31] text-white py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors">
+                  <span>📸</span>
+                  <span>Compartir Fotos</span>
+                </button>
+
+                <!-- Botón: Copiar Mensaje -->
+                <button type="button" onclick="copyWhatsappMessage()" class="btn-touch bg-slate-100 hover:bg-slate-200 text-slate-700 py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors">
+                  <span>📋</span>
+                  <span id="copyBtnText">Copiar Mensaje</span>
+                </button>
+              </div>
+
+              <!-- Botones Complementarios: Guardar en Historial / Imprimir Ficha -->
+              <div class="grid grid-cols-2 gap-2 pt-1">
+                <button type="button" onclick="saveCurrentInspection()" class="btn-touch bg-slate-100 hover:bg-slate-200 text-slate-700 py-2 px-3 rounded-xl font-semibold text-xs flex items-center justify-center gap-1">
+                  <span>💾</span>
+                  <span>Guardar en Historial</span>
+                </button>
+
+                <button type="button" onclick="window.print()" class="btn-touch bg-slate-100 hover:bg-slate-200 text-slate-700 py-2 px-3 rounded-xl font-semibold text-xs flex items-center justify-center gap-1">
+                  <span>📄</span>
+                  <span>Exportar / Imprimir</span>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ============================================================================== -->
+  <!-- BARRA FLOTANTE EN MÓVILES (BOTÓN FIJO PARA WHATSAPP) -->
+  <!-- ============================================================================== -->
+  <div id="floatingBar" class="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur border-t border-slate-200 p-2.5 px-4 z-30 sm:hidden flex items-center justify-between gap-3 shadow-lg no-print">
+    <div class="flex flex-col">
+      <span class="text-[10px] text-slate-400 font-bold uppercase">Oferta Sugerida:</span>
+      <span id="floatingOfferDisplay" class="text-base font-black text-emerald-700 font-serif leading-none">USD $0</span>
+    </div>
+    <button type="button" onclick="sendDirectToJonathan()" class="btn-touch bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow">
+      <span>📲</span>
+      <span>Enviar a Jonathan</span>
+    </button>
+  </div>
+
+  <!-- ============================================================================== -->
+  <!-- DRAWER / PANEL LATERAL DE HISTORIAL DE PERITAJES -->
+  <!-- ============================================================================== -->
+  <div id="historyDrawer" class="fixed inset-0 bg-black/50 z-50 hidden transition-opacity">
+    <div class="absolute right-0 inset-y-0 w-full max-w-md bg-white shadow-2xl flex flex-col">
+      
+      <div class="p-4 bg-[#2D3E46] text-white flex items-center justify-between">
+        <div>
+          <h3 class="font-bold text-base font-serif flex items-center gap-1.5">
+            <span>📁</span> Historial de Peritajes del Día
+          </h3>
+          <p class="text-xs text-slate-300">Autos peritados en el patio de CARVLAK</p>
+        </div>
+        <button onclick="toggleHistoryDrawer()" class="text-white hover:text-rose-300 text-2xl font-bold p-1">&times;</button>
+      </div>
+
+      <div id="historyListContainer" class="flex-1 overflow-y-auto p-4 space-y-3">
+        <!-- Lista de peritajes renderizada por JS -->
+      </div>
+
+      <div class="p-4 border-t border-slate-200 bg-slate-50 flex justify-between items-center">
+        <button onclick="clearHistory()" class="text-xs font-bold text-rose-600 hover:underline">
+          Borrar Historial
+        </button>
+        <button onclick="toggleHistoryDrawer()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold px-4 py-2 rounded-lg">
+          Cerrar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================================== -->
+  <!-- MODAL DE AJUSTES (CONFIGURAR TELÉFONO DE JONATHAN) -->
+  <!-- ============================================================================== -->
+  <div id="settingsModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-5 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+        <h3 class="font-bold text-base text-[#1E2B31] font-serif flex items-center gap-1.5">
+          <span>⚙️</span> Configuración de Destino
+        </h3>
+        <button onclick="closeSettingsModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nombre del Jefe</label>
+        <input type="text" id="settingBossName" value="Jonathan Kaitazoff" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-semibold outline-none">
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Teléfono WhatsApp (Uruguay)</label>
+        <input type="tel" id="settingBossPhone" value="59899267964" placeholder="59899267964" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-bold outline-none">
+        <p class="text-[11px] text-slate-500 mt-1">Formato internacional sin signos (ej: 59899267964)</p>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Costo Estimado de Pintura por Pieza (USD)</label>
+        <input type="number" id="settingCostPerPanel" value="90" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-bold outline-none">
+      </div>
+
+      <div class="flex justify-end gap-2 pt-2">
+        <button type="button" onclick="closeSettingsModal()" class="bg-slate-200 text-slate-700 text-xs font-bold px-4 py-2 rounded-xl">Cancelar</button>
+        <button type="button" onclick="saveSettings()" class="bg-[#2D3E46] text-white text-xs font-bold px-4 py-2 rounded-xl">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================================== -->
+  <!-- TOAST NOTIFICATION FLOTANTE -->
+  <!-- ============================================================================== -->
+  <div id="toastNotification" class="fixed top-4 right-4 z-50 bg-[#1E2B31] text-white px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2 text-xs font-bold transform -translate-y-20 opacity-0 pointer-events-none transition-all">
+    <span id="toastIcon">✅</span>
+    <span id="toastText">Operación exitosa</span>
+  </div>
+
+  <!-- VISTA DE IMPRESIÓN / FICHA TÉCNICA (Sólo visible en @media print) -->
+  <div id="printSheet" class="hidden print-only p-6 font-sans">
+    <div class="border-b-2 border-[#2D3E46] pb-3 mb-4 flex justify-between items-center">
+      <div>
+        <h1 class="text-2xl font-bold font-serif text-[#1E2B31]">CARVLAK AUTOMOTORES</h1>
+        <p class="text-xs text-slate-600">Ficha Oficial de Peritaje & Inspección de Patio</p>
+      </div>
+      <div class="text-right text-xs">
+        <p id="printDate" class="font-bold"></p>
+        <p id="printOperator" class="text-slate-600"></p>
+      </div>
+    </div>
+
+    <div class="space-y-4 text-xs">
+      <div class="border border-slate-300 rounded p-3">
+        <h3 class="font-bold uppercase text-slate-800 mb-2">1. Identificación del Vehículo</h3>
+        <div class="grid grid-cols-3 gap-2" id="printVehicleDetails"></div>
+      </div>
+
+      <div class="border border-slate-300 rounded p-3">
+        <h3 class="font-bold uppercase text-slate-800 mb-2">2. Estructura & Carrocería</h3>
+        <p id="printStructuralDetails" class="mb-2 font-bold"></p>
+        <p id="printPanelsDetails"></p>
+      </div>
+
+      <div class="border border-slate-300 rounded p-3">
+        <h3 class="font-bold uppercase text-slate-800 mb-2">3. Mecánica & Neumáticos</h3>
+        <div class="grid grid-cols-2 gap-2" id="printMechanicalDetails"></div>
+      </div>
+
+      <div class="border border-slate-300 rounded p-3">
+        <h3 class="font-bold uppercase text-slate-800 mb-2">4. Documentación & Números</h3>
+        <div class="grid grid-cols-2 gap-2" id="printOfferDetails"></div>
+      </div>
+
+      <div class="pt-8 grid grid-cols-2 gap-8 text-center">
+        <div class="border-t border-slate-400 pt-1">
+          <p class="font-bold">Firma del Inspector</p>
+          <p id="printSignOperator" class="text-slate-600"></p>
+        </div>
+        <div class="border-t border-slate-400 pt-1">
+          <p class="font-bold">Conformidad Dirección</p>
+          <p class="text-slate-600">Jonathan Kaitazoff</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT PRINCIPAL -->
+  <script src="app.js"></script>
+</body>
+</html>
